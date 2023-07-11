@@ -28,6 +28,7 @@ Cell::~Cell()
 
 void Cell::fillCell(const char* fill)
 {
+    this->content = new char[strlen(fill) + 1];
     strcpy(this->content,fill);
     data = findType(fill);
 }
@@ -86,12 +87,14 @@ Data Cell::findType(const char* _content)
 
 void Cell::init(const char* content)
 {
+    this->content = new char[strlen(content) + 1];
     strcpy(this->content, content);
     typeOfCell = findType(content);
 }
 
 void Cell::copy(Cell& other)
 {
+    this->content = new char[strlen(other.content) + 1];
     strcpy(this->content, other.content);
     this->typeOfCell = other.typeOfCell;
 }
