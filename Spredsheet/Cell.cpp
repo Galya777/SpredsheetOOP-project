@@ -2,9 +2,9 @@
 #include <fstream>
 #include <iostream>
 #pragma warning(disable:4996)
-Cell::Cell(const char* content)
+Cell::Cell(std::string content)
 {
-    init(content);
+    content = "";
 }
 
 Cell::Cell()
@@ -15,21 +15,18 @@ Cell::Cell()
 Cell Cell::operator=(Cell& other)
 {
     if (this != &other) {
-        clear();
+        //clear();
         copy(other);
     }
     return *this;
 }
 
-Cell::~Cell()
-{
-    clear();
-}
 
-void Cell::fillCell(const char* fill)
+
+void Cell::fillCell(std::string fill)
 {
-    strcpy(this->content,fill);
-    data = findType(fill);
+    content = fill;
+    data = findType(fill.c_str());
 }
 
 void Cell::writeToFile(std::fstream& file) const
@@ -39,19 +36,18 @@ void Cell::writeToFile(std::fstream& file) const
 
 void Cell::editCell(const char* NewContent) 
 {
-    clear();
-    content = nullptr;
-    strcpy(this->content, NewContent);
+    content = "";
+    this->content = NewContent;
 }
 
 void Cell::print() const
 {
-    std::cout << *content;
+    std::cout << content;
 }
 
 void Cell::setSize()
 {
-    sizeofData = strlen(content);
+    sizeofData = content.size();
 }
 
 Data Cell::findType(const char* _content)
@@ -86,19 +82,15 @@ Data Cell::findType(const char* _content)
 
 void Cell::init(const char* content)
 {
-    strcpy(this->content, content);
+    this->content = new char[strlen(content) + 1];
+    this->content= content;
     typeOfCell = findType(content);
 }
 
-void Cell::copy(Cell& other)
+void Cell::copy(const Cell& other)
 {
-    strcpy(this->content, other.content);
+    this->content= other.content;
     this->typeOfCell = other.typeOfCell;
-}
-
-void Cell::clear()
-{
-    delete[] content;
 }
 
 std::ostream& operator<<(std::ostream& out, const Cell& other)

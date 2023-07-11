@@ -4,7 +4,8 @@
 
 Formula::Formula(char* formula): Cell(formula)
 {
-	char* par = content + 1;
+	char* par = new char[content.size() + 1];
+	strcpy(par, content.c_str());
 	int end = 0;
 	for (par; *par == ' '; ++par);
 	if (isdigit(*par))
@@ -29,6 +30,7 @@ Formula::Formula(char* formula): Cell(formula)
 	{
 		std::cout << "Could not read the information!";
 	}
+	delete[] par;
 }
 
 double Formula::calculate() const
