@@ -82,14 +82,13 @@ Data Cell::findType(const char* _content)
 
 void Cell::init(const char* content)
 {
-    this->content = new char[strlen(content) + 1];
-    this->content= content;
+    strcpy(this->content, content);
     typeOfCell = findType(content);
 }
 
 void Cell::copy(const Cell& other)
 {
-    this->content= other.content;
+    strcpy(this->content, other.content);
     this->typeOfCell = other.typeOfCell;
 }
 
