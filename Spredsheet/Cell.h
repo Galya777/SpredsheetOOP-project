@@ -7,7 +7,7 @@
 * This class represents the cell 
 * Each cell has its own content and type
 */
-class Cell:public TypesOfData
+class Cell
 {
 public:
 	/// <summary>
@@ -38,6 +38,7 @@ protected:
 
 	std::string content; 
 	Data typeOfCell;
+	int sizeofData;
 private:
 	//helping functions to initialize the big four
 	void init(const char* content);

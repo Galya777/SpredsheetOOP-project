@@ -16,7 +16,7 @@ class TypesOfData
 public:
 	TypesOfData(size_t size, const Data& data=EMPTY);
 	TypesOfData();
-    size_t getSize();
+    size_t getSize() const;
 protected:
 	Data data;
 	std::size_t sizeofData;

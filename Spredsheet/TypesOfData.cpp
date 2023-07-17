@@ -11,7 +11,7 @@ TypesOfData::TypesOfData()
 	sizeofData = 0;
 }
 
-size_t TypesOfData::getSize()
+size_t TypesOfData::getSize() const
 {
 	return sizeofData;
 }

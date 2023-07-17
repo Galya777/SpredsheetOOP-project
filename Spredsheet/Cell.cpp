@@ -5,11 +5,13 @@
 Cell::Cell(std::string content)
 {
     content = "";
+    sizeofData = content.size();
 }
 
 Cell::Cell()
 {
     init("");
+    sizeofData = 0;
 }
 
 Cell Cell::operator=(Cell& other)
@@ -26,7 +28,7 @@ Cell Cell::operator=(Cell& other)
 void Cell::fillCell(std::string fill)
 {
     content = fill;
-    data = findType(fill.c_str());
+    typeOfCell= findType(fill.c_str());
 }
 
 void Cell::writeToFile(std::fstream& file) const
@@ -47,7 +49,7 @@ void Cell::print() const
 
 void Cell::setSize()
 {
-    sizeofData = content.size();
+    sizeofData= content.size();
 }
 
 Data Cell::findType(const char* _content)
