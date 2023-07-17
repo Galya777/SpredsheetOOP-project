@@ -82,7 +82,6 @@ Data Cell::findType(const char* _content)
 
 void Cell::init(const char* content)
 {
-    this->content = new char[strlen(content) + 1];
     this->content= content;
     typeOfCell = findType(content);
 }
